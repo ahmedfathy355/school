@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal"
+    android:background = "@xml/roundedbutton"
+    android:layout_margin="10dp">
+
+
+    <view
+        android:layout_width="5dp"
+        android:layout_height="match_parent"
+        android:background="@color/primaryDarkColor"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="0.8">
+        <ImageView
+            android:id="@+id/Subject_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingRight="5dp"
+            android:gravity="center|center_horizontal|center_vertical"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight=".2">
+        <TextView
+            android:id="@+id/homework"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primaryDarkColor"
+            android:text="Sum Numbers To 10"
+            android:gravity="left"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/subject_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:gravity="left"
+            android:text="رياضة" />
+        <TextView
+            android:id="@+id/teacher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mr / ahmed Fathy"
+            android:gravity="left"
+            android:textColor="@color/primaryColor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="0.9">
+        <TextView
+            android:id="@+id/subject_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:text=""
+            android:textSize="16dp"
+            android:textColor="@android:color/holo_red_dark" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

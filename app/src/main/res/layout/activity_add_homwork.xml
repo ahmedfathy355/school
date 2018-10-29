@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="40dp"
+    tools:context=".AddHomwork">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_smlarge"
+                android:layout_marginRight="@dimen/spacing_smlarge"
+                android:gravity="center"
+                android:minHeight="?attr/actionBarSize"
+                android:text="Subject"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/grey_60" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/txt_Classes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_smlarge"
+                    android:layout_marginRight="@dimen/spacing_smlarge"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
+                    android:hint="Classes"
+                    android:layout_weight="0.1"
+                    android:minHeight="?attr/actionBarSize"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="@color/grey_80" />
+
+                <ImageButton
+                    android:id="@+id/classes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_weight="0.7"
+                    android:src="@drawable/ic_navigate_next_black_24dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_10" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_smlarge"
+            android:layout_marginRight="@dimen/spacing_smlarge"
+            android:gravity="center"
+            android:minHeight="?attr/actionBarSize"
+            android:text="Subject"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textColor="@color/grey_60" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/subject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_smlarge"
+                android:layout_marginRight="@dimen/spacing_smlarge"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:hint="Subject"
+                android:layout_weight="0.1"
+                android:minHeight="?attr/actionBarSize"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/grey_80" />
+
+            <ImageButton
+                android:id="@+id/classes2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_weight="0.7"
+                android:src="@drawable/ic_navigate_next_black_24dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_10" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_smlarge"
+            android:layout_marginRight="@dimen/spacing_smlarge"
+            android:gravity="center"
+            android:minHeight="?attr/actionBarSize"
+            android:text="Subject"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textColor="@color/grey_60" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/subject3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_smlarge"
+                android:layout_marginRight="@dimen/spacing_smlarge"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:hint="Subject"
+                android:layout_weight="0.1"
+                android:minHeight="?attr/actionBarSize"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/grey_80" />
+
+            <ImageButton
+                android:id="@+id/classes3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_weight="0.7"
+                android:src="@drawable/ic_navigate_next_black_24dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_10" />
+
+    <ImageView
+        android:id="@+id/img_Upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_upload" />
+
+    <EditText
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/spacing_smlarge"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:hint="Compose Mail"
+            android:minHeight="?attr/actionBarSize"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textColor="@color/grey_80" />
+
+
+
+
+</LinearLayout>
