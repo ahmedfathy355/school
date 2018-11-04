@@ -3,4 +3,9 @@
     <string name="Homwork">Homework</string>
     <string name="Classes">Classes</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="save">SAVE</string>
+    <string name="new_event">New event</string>
+    <string name="todo">TODO</string>
+    <string name="compose_mail">Compose Mail</string>
+    <string name="subject">Subject</string>
 </resources>

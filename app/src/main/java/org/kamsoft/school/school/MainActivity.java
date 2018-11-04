@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         new_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(MainActivity.this , AddHomwork.class);
+                Intent in = new Intent(MainActivity.this , MainHomWork.class);
                 startActivity(in);
             }
         });

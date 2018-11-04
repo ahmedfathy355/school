@@ -1,20 +1,18 @@
 package org.kamsoft.school.school;
 
-import android.app.Dialog;
 import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.kamsoft.school.school.Database.ConnectivityReceiver;
 import org.kamsoft.school.school.Session.SessionManager;
@@ -27,7 +25,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class AddHomwork extends AppCompatActivity {
@@ -39,11 +36,11 @@ public class AddHomwork extends AppCompatActivity {
     boolean isConnected;
     int[] images = {R.drawable.ic_navigate_next_black_24dp,R.drawable.ic_navigate_before_black_24dp};
     SessionManager session;
-
+ImageButton classes;
         @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_homwork);
+        setContentView(R.layout.dialog_add_homwork);
 
         initToolbar();
 
@@ -85,7 +82,7 @@ public class AddHomwork extends AppCompatActivity {
 //        }
 //
 
-        //final SpinnerAdapter adapter = new SpinnerAdapter(this,R.layout.spinner_layout,R.id.txt,data);
+        //final SpinnerAdapter adapter = new SpinnerAdapter(this,R.layout.simple_spinner_item,R.id.txt,data);
         //_Spinner_Levels.setAdapter(adapter);
 
 //        _Spinner_Levels.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -105,7 +102,7 @@ public class AddHomwork extends AppCompatActivity {
 
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_cancel_grey_24dp);
+        toolbar.setNavigationIcon(R.drawable.menu_homework);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Basic");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -30,7 +30,7 @@ public class SpinnerAdapter extends ArrayAdapter<Levels> {
 //        ImageView imageView=(ImageView)itemView.findViewById(R.id.img);
 //        imageView.setImageResource(list.get(position).getId());
 
-        TextView textView=(TextView)itemView.findViewById(R.id.txt);
+        TextView textView=(TextView)itemView.findViewById(R.id.text1);
         textView.setText(list.get(position).getText());
 //        Typeface externalFont=Typeface.createFromAsset(getContext().getAssets(), "hacen.ttf");
 //        textView.setTypeface(externalFont);
