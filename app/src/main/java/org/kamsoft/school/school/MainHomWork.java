@@ -2,6 +2,7 @@ package org.kamsoft.school.school;
 
 import android.app.Dialog;
 import android.app.LauncherActivity;
+import android.content.Context;
 import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,7 +19,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -76,11 +80,6 @@ public class MainHomWork extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
         initComponent();
     }
 
@@ -117,36 +116,60 @@ public class MainHomWork extends AppCompatActivity {
 
 
 
-        List<String> dogsList = new ArrayList<String>();
-        dogsList.add("Akita Inu::1");
-        dogsList.add("Alaskan Klee Kai::2");
-        dogsList.add("Papillon::3");
-        dogsList.add("Tibetan Spaniel::4");
+        final List<String> dogsList = new ArrayList<String>();
+        dogsList.add("Class 1D::1");
+        dogsList.add("Class 2D::2");
+        dogsList.add("KG 1::3");
+        dogsList.add("KG 2::4");
 
-        popUpContents = new String[dogsList.size()];
-        dogsList.toArray(popUpContents);
-        popupWindowDogs = popupWindowDogs();
 
-        View.OnClickListener handler = new View.OnClickListener() {
-            public void onClick(View v) {
 
-                switch (v.getId()) {
+        final ImageButton buttonShowDropDown = (ImageButton) dialog.findViewById(R.id.classes);
+        buttonShowDropDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
 
                     case R.id.classes:
+                        popUpContents = new String[dogsList.size()];
+                        dogsList.toArray(popUpContents);
+                        popupWindowDogs = popupWindowDogs();
                         // show the list view as dropdown
-                        popupWindowDogs.showAsDropDown(v, -5, 0);
+                        popupWindowDogs.showAsDropDown(view, -5, 0);
                         break;
                 }
             }
-        };
-        final ImageButton buttonShowDropDown = (ImageButton) dialog.findViewById(R.id.classes);
-        buttonShowDropDown.setOnClickListener(handler);
+        });
 
 
 
+        final List<String> dogsList2 = new ArrayList<String>();
+        dogsList2.add("Math::1");
+        dogsList2.add("English::2");
+        dogsList2.add("Arabic::3");
+        dogsList2.add("Art::4");
 
-        final EditText txt_Classes = (EditText) dialog.findViewById(R.id.txt_Classes);
-        final EditText subject = (EditText) dialog.findViewById(R.id.subject);
+
+        final ImageButton buttonShowDropDown2 = (ImageButton) dialog.findViewById(R.id.classes2);
+        buttonShowDropDown2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+
+                    case R.id.classes2:
+                        popUpContents = new String[dogsList2.size()];
+                        dogsList2.toArray(popUpContents);
+                        popupWindowDogs = popupWindowDogs2();
+                        // show the list view as dropdown
+                        popupWindowDogs.showAsDropDown(view, -5, 0);
+                        break;
+                }
+            }
+        });
+
+
+        txt_Classes = (EditText) dialog.findViewById(R.id.txt_Classes);
+        subject = (EditText) dialog.findViewById(R.id.subject);
         final EditText subject3 = (EditText) dialog.findViewById(R.id.subject3);
 
 
@@ -173,7 +196,7 @@ public class MainHomWork extends AppCompatActivity {
         dialog.getWindow().setAttributes(lp);
     }
 
-
+    EditText txt_Classes,subject;
     public PopupWindow popupWindowDogs() {
 
         // initialize a pop up window type
@@ -199,9 +222,34 @@ public class MainHomWork extends AppCompatActivity {
         return popupWindow;
     }
 
+    public PopupWindow popupWindowDogs2() {
+
+        // initialize a pop up window type
+        PopupWindow popupWindow = new PopupWindow(this);
+
+        // the drop down list is a list view
+        ListView listViewDogs = new ListView(this);
+
+        // set our adapter and pass our pop up window contents
+        listViewDogs.setAdapter(dogsAdapter(popUpContents));
+
+        // set the item click listener
+        listViewDogs.setOnItemClickListener(new DogsDropdownOnItemClickListener2());
+
+        // some other visual settings
+        popupWindow.setFocusable(true);
+        popupWindow.setWidth(250);
+        popupWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+
+        // set the list view as pop up window content
+        popupWindow.setContentView(listViewDogs);
+
+        return popupWindow;
+    }
+
     private ArrayAdapter<String> dogsAdapter(String dogsArray[]) {
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dogsArray) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, dogsArray) {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -276,6 +324,73 @@ public class MainHomWork extends AppCompatActivity {
             textView.setTextColor(color);
             textView.setBackgroundColor(Color.BLACK);
             snackbar.show();
+        }
+    }
+
+    private  class DogsDropdownOnItemClickListener implements android.widget.AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            // get the context and main activity to access variables
+            Context mContext = view.getContext();
+            MainHomWork mainActivity = ((MainHomWork) mContext);
+
+            // add some animation when a list item was clicked
+            Animation fadeInAnimation = AnimationUtils.loadAnimation(view.getContext(), android.R.anim.fade_in);
+            fadeInAnimation.setDuration(10);
+            view.startAnimation(fadeInAnimation);
+
+            // dismiss the pop up
+            mainActivity.popupWindowDogs.dismiss();
+
+            // get the text and set it as the button text
+            String selectedItemText = ((TextView) view).getText().toString();
+            if(txt_Classes.getText().equals(String.valueOf("")))
+            {
+                txt_Classes.setText(selectedItemText);
+            }
+            else
+            {
+                txt_Classes.setText(txt_Classes.getText() + ", " + selectedItemText);
+            }
+
+            // get the id
+            String selectedItemTag = ((TextView) view).getTag().toString();
+            //Toast.makeText(mContext, "Dog ID is: " + selectedItemTag, Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+
+    private  class DogsDropdownOnItemClickListener2 implements android.widget.AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            // get the context and main activity to access variables
+            Context mContext = view.getContext();
+            MainHomWork mainActivity = ((MainHomWork) mContext);
+
+            // add some animation when a list item was clicked
+            Animation fadeInAnimation = AnimationUtils.loadAnimation(view.getContext(), android.R.anim.fade_in);
+            fadeInAnimation.setDuration(10);
+            view.startAnimation(fadeInAnimation);
+
+            // dismiss the pop up
+            mainActivity.popupWindowDogs.dismiss();
+
+                // get the text and set it as the button text
+            String selectedItemText = ((TextView) view).getText().toString();
+            if(subject.getText().equals(String.valueOf("")))
+            {
+
+            }
+            else
+            {
+                //subject.setText(subject.getText() + ", " + selectedItemText);
+            }
+            subject.setText(selectedItemText);
+            // get the id
+            String selectedItemTag = ((TextView) view).getTag().toString();
+            //Toast.makeText(mContext, "Dog ID is: " + selectedItemTag, Toast.LENGTH_SHORT).show();
+
         }
     }
 }
