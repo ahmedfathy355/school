@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Adapter;
@@ -23,7 +24,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +35,7 @@ import org.kamsoft.school.school.Session.SessionManager;
 import org.kamsoft.school.school.utils.Tools;
 import org.kamsoft.school.school.utils.ViewAnimation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainHomWork extends AppCompatActivity {
@@ -98,6 +102,8 @@ public class MainHomWork extends AppCompatActivity {
 
     }
 
+    String popUpContents[];
+    PopupWindow popupWindowDogs;
     private void showCustomDialog() {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
@@ -111,24 +117,31 @@ public class MainHomWork extends AppCompatActivity {
 
 
 
+        List<String> dogsList = new ArrayList<String>();
+        dogsList.add("Akita Inu::1");
+        dogsList.add("Alaskan Klee Kai::2");
+        dogsList.add("Papillon::3");
+        dogsList.add("Tibetan Spaniel::4");
 
+        popUpContents = new String[dogsList.size()];
+        dogsList.toArray(popUpContents);
+        popupWindowDogs = popupWindowDogs();
 
-        final ImageButton bb = (ImageButton) dialog.findViewById(R.id.classes);
-        (bb).setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener handler = new View.OnClickListener() {
+            public void onClick(View v) {
 
-            @Override
-            public void onClick(View view) {
-                PopupMenu _pop = new PopupMenu(MainHomWork.this , bb);
-                _pop.getMenuInflater().inflate(R.menu.poupup_menu , _pop.getMenu());
-                _pop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        EditText tt = (EditText)findViewById(R.id.txt_Classes);
-                        tt.setText(item.getTitle());
-                        return true;
-                    }
-                });
+                switch (v.getId()) {
+
+                    case R.id.classes:
+                        // show the list view as dropdown
+                        popupWindowDogs.showAsDropDown(v, -5, 0);
+                        break;
+                }
             }
-        });
+        };
+        final ImageButton buttonShowDropDown = (ImageButton) dialog.findViewById(R.id.classes);
+        buttonShowDropDown.setOnClickListener(handler);
+
 
 
 
@@ -151,23 +164,73 @@ public class MainHomWork extends AppCompatActivity {
         ((Button) dialog.findViewById(R.id.bt_save)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Event event = new Event();
-//                event.email = tv_email.getText().toString();
-//                event.name = et_name.getText().toString();
-//                event.location = et_location.getText().toString();
-//                event.from = spn_from_date.getText().toString() + " (" + spn_from_time.getText().toString() + ")";
-//                event.to = spn_to_date.getText().toString() + " (" + spn_to_time.getText().toString() + ")";
-//                event.is_allday = cb_allday.isChecked();
-//                event.timezone = spn_timezone.getSelectedItem().toString();
-//                displayDataResult(event);
+
 
                 dialog.dismiss();
             }
         });
-
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
+
+
+    public PopupWindow popupWindowDogs() {
+
+        // initialize a pop up window type
+        PopupWindow popupWindow = new PopupWindow(this);
+
+        // the drop down list is a list view
+        ListView listViewDogs = new ListView(this);
+
+        // set our adapter and pass our pop up window contents
+        listViewDogs.setAdapter(dogsAdapter(popUpContents));
+
+        // set the item click listener
+        listViewDogs.setOnItemClickListener(new DogsDropdownOnItemClickListener());
+
+        // some other visual settings
+        popupWindow.setFocusable(true);
+        popupWindow.setWidth(250);
+        popupWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+
+        // set the list view as pop up window content
+        popupWindow.setContentView(listViewDogs);
+
+        return popupWindow;
+    }
+
+    private ArrayAdapter<String> dogsAdapter(String dogsArray[]) {
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dogsArray) {
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+                // setting the ID and text for every items in the list
+                String item = getItem(position);
+                String[] itemArr = item.split("::");
+                String text = itemArr[0];
+                String id = itemArr[1];
+
+                // visual settings for the list item
+                TextView listItem = new TextView(MainHomWork.this);
+
+                listItem.setText(text);
+                listItem.setTag(id);
+                listItem.setTextSize(22);
+                listItem.setPadding(10, 10, 10, 10);
+                listItem.setTextColor(Color.WHITE);
+
+                return listItem;
+            }
+        };
+
+        return adapter;
+    }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -216,3 +279,4 @@ public class MainHomWork extends AppCompatActivity {
         }
     }
 }
+
