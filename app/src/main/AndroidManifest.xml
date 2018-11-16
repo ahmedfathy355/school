@@ -22,14 +22,20 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme">
+
+        </activity>
+        <activity android:name=".AddHomwork" />
+        <activity android:name=".Main3Activity" />
+        <activity android:name=".HomeActivity" />
+        <activity
+            android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddHomwork" />
-        <activity android:name=".Main3Activity" />
+
 
         <receiver
             android:name=".Database.ConnectivityReceiver"
