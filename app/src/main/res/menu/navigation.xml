@@ -9,6 +9,11 @@
         android:state_checked="true"/>
 
     <item
+        android:id="@+id/navigation_homework"
+        android:icon="@drawable/ic_library_books_black_24dp"
+        android:title="Home Work" />
+
+    <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="Dashboard" />

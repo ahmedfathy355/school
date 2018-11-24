@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import org.kamsoft.school.school.fragments.NavigationDashboardActivity;
 import org.kamsoft.school.school.fragments.NavigationHomeActivity;
+import org.kamsoft.school.school.fragments.NavigationHomeWorkActivity;
 import org.kamsoft.school.school.fragments.NavigationNotificationActivity;
 
 
@@ -19,26 +20,7 @@ public class HomeActivity extends AppCompatActivity {
 
     NavigationView navigationView;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    viewPager.setCurrentItem(0);
-                    return true;
-                case R.id.navigation_dashboard:
-                    viewPager.setCurrentItem(1);
-                    return true;
-                case R.id.navigation_notifications:
-                    viewPager.setCurrentItem(2);
-                    return true;
-            }
-            return false;
-        }
-
-    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +48,12 @@ public class HomeActivity extends AppCompatActivity {
                         navigation.setSelectedItemId(R.id.navigation_home);
                         break;
                     case 1:
-                        navigation.setSelectedItemId(R.id.navigation_dashboard);
+                        navigation.setSelectedItemId(R.id.navigation_homework);
                         break;
                     case 2:
+                        navigation.setSelectedItemId(R.id.navigation_dashboard);
+                        break;
+                    case 3:
                         navigation.setSelectedItemId(R.id.navigation_notifications);
                         break;
                 }
@@ -83,9 +68,34 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    viewPager.setCurrentItem(0);
+                    return true;
+                case R.id.navigation_homework:
+                    viewPager.setCurrentItem(1);
+                    return true;
+                case R.id.navigation_dashboard:
+                    viewPager.setCurrentItem(2);
+                    return true;
+                case R.id.navigation_notifications:
+                    viewPager.setCurrentItem(3);
+                    return true;
+            }
+            return false;
+        }
+
+    };
+
     private void setupViewPager(ViewPager viewPager) {
         BottomNavPagerAdapter adapter = new BottomNavPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new NavigationHomeActivity());
+        adapter.addFragment(new NavigationHomeWorkActivity());
         adapter.addFragment(new NavigationDashboardActivity());
         adapter.addFragment(new NavigationNotificationActivity());
         viewPager.setAdapter(adapter);

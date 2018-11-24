@@ -1,9 +1,11 @@
 package org.kamsoft.school.school;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.kamsoft.school.school.Session.SessionManager;
 
@@ -11,12 +13,16 @@ public class Splash extends AppCompatActivity {
 
     SessionManager session;
     ImageView imgsplash;
+    TextView schoolname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
         imgsplash = (ImageView) findViewById(R.id.imagesplash);
+        schoolname = (TextView) findViewById(R.id.schoolname);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/hacen.ttf");
+        schoolname.setTypeface(typeface);
 
         final Intent iii = new Intent(Splash.this, HomeActivity.class);
         Thread timer = new Thread(){

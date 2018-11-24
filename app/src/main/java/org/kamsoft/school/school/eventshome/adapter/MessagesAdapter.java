@@ -163,13 +163,13 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MyView
                     .thumbnail(0.5f)
                     .crossFade()
                     .transform(new CircleTransform(mContext))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(holder.imgProfile);
-            holder.imgProfile.setColorFilter(null);
+                    .diskCacheStrategy(DiskCacheStrategy.ALL);
+                    //.into(holder.imgProfile);
+            //holder.imgProfile.setColorFilter(null);
             holder.iconText.setVisibility(View.GONE);
         } else {
-            holder.imgProfile.setImageResource(R.drawable.bg_circle);
-            holder.imgProfile.setColorFilter(message.getColor());
+            //holder.imgProfile.setImageResource(R.drawable.bg_circle);
+            //holder.imgProfile.setColorFilter(message.getColor());
             holder.iconText.setVisibility(View.VISIBLE);
         }
     }

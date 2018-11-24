@@ -3,12 +3,15 @@ package org.kamsoft.school.school.adapter;
 public class Classess {
     private int id;
     boolean isSelected;
-    private String _imgClass;
-    private String _ClassName;
+    public String _imgClass;
+    public String _ClassName;
 
 
 
     public Classess() {
+    }
+
+    public Classess(int i, boolean b, int classroom, String lkjh) {
     }
 
     public int getId() {

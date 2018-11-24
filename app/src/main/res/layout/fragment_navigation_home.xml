@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    android:orientation="vertical"
     tools:mContext="org.kamsoft.school.school.fragments.NavigationHomeActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -16,79 +16,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <include layout="@layout/content_navigationhome"/>
 
-        <Button
-            android:id="@+id/prevD2"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_navigate_before_black_24dp"
-            android:text="" />
-
-        <TextView
-            android:id="@+id/mDate2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_weight="1"
-            android:text="-"
-            android:textSize="17sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/nexD2"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_navigate_next_black_24dp"
-            android:text=""/>
-    </LinearLayout>
-
-    <View
-        android:id="@+id/line42"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="3dp"
-        android:background="@color/primaryColor" />
-
-
-    <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/coordinator_lyt2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-
-
-        <include layout="@layout/content_navigationhome"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end|right"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_add2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_smlarge"
-                android:layout_marginLeft="@dimen/spacing_smlarge"
-                android:layout_marginRight="@dimen/spacing_smlarge"
-                android:layout_marginTop="@dimen/spacing_middle"
-                android:clickable="true"
-                android:tint="@android:color/white"
-                app:fabSize="normal"
-                app:rippleColor="@android:color/white"
-                app:srcCompat="@drawable/ic_add"
-                tools:ignore="VectorDrawableCompat" />
-
-        </LinearLayout>
-
-
-    </android.support.design.widget.CoordinatorLayout>
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
