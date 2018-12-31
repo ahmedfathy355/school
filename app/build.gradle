@@ -54,4 +54,9 @@ dependencies {
     // glide
     implementation 'com.github.bumptech.glide:glide:3.7.0'
 
+
+    //Qr And Barcode Scanner
+    implementation 'me.dm7.barcodescanner:zbar:1.9.3'
+    implementation 'me.dm7.barcodescanner:zxing:1.9.3'
+
 }

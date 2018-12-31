@@ -8,4 +8,13 @@
     <string name="todo">TODO</string>
     <string name="compose_mail">Compose Mail</string>
     <string name="subject">Subject</string>
+
+    <string name="share">Share</string>
+    <string name="menu_scan">Scan</string>
+    <string name="menu_skip">Skip</string>
+    <string name="permission_not_granted">Permission not granted!</string>
+    <string name="autofocus_on">autofocus_on</string>
+    <string name="autofocus_off">autofocus off</string>
+    <string name="tapAgain">tab again to exit</string>
+    <string name="copied">Copied</string>
 </resources>

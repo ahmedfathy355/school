@@ -95,9 +95,9 @@ public class HomeActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         BottomNavPagerAdapter adapter = new BottomNavPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new NavigationHomeActivity());
-        adapter.addFragment(new NavigationHomeWorkActivity());
-        adapter.addFragment(new NavigationDashboardActivity());
-        adapter.addFragment(new NavigationNotificationActivity());
+//        adapter.addFragment(new NavigationHomeWorkActivity());
+//        adapter.addFragment(new NavigationDashboardActivity());
+//        adapter.addFragment(new NavigationNotificationActivity());
         viewPager.setAdapter(adapter);
     }
 

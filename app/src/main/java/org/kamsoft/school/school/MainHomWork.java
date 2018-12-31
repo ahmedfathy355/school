@@ -85,7 +85,7 @@ public class MainHomWork extends AppCompatActivity {
 
 
     private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         toolbar.setNavigationIcon(R.drawable.ic_menu);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Custom");

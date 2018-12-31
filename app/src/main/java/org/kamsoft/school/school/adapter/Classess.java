@@ -5,7 +5,7 @@ public class Classess {
     boolean isSelected;
     public String _imgClass;
     public String _ClassName;
-
+    ///mAdapter = new AddressListAdapter.MyViewHolder(
 
 
     public Classess() {

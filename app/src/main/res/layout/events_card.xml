@@ -4,15 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:orientation="horizontal">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="horizontal">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal">
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_gravity="center"
-        android:layout_width="120dp"
-        android:layout_height="100dp"
-        card_view:cardBackgroundColor="@color/primaryDarkColor"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        card_view:cardBackgroundColor="@color/grey_5"
         card_view:cardCornerRadius="10dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -22,12 +30,14 @@
             android:orientation="vertical">
 
             <ImageView
-                android:src="@drawable/classroom"
+                android:id="@+id/carsimg"
                 android:layout_width="64dp"
                 android:layout_height="48dp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:src="@drawable/homework" />
 
             <TextView
+                android:id="@+id/cardtxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -42,80 +52,158 @@
 
     </android.support.v7.widget.CardView>
 
-    <!--<android.support.v7.widget.CardView-->
-        <!--xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_width="120dp"-->
-        <!--android:layout_height="100dp"-->
-        <!--card_view:cardBackgroundColor="@color/primaryDarkColor"-->
-        <!--card_view:cardCornerRadius="10dp"-->
-        <!--android:layout_marginLeft="30dp"-->
-        <!--android:layout_marginTop="15dp">-->
-        <!--<LinearLayout-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_horizontal|center_vertical"-->
-            <!--android:layout_margin="1dp"-->
-            <!--android:orientation="vertical">-->
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        card_view:cardBackgroundColor="@color/grey_5"
+        card_view:cardCornerRadius="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="1dp"
+            android:orientation="vertical">
 
-            <!--<ImageView-->
-                <!--android:src="@drawable/classroom"-->
-                <!--android:layout_width="64dp"-->
-                <!--android:layout_height="48dp"-->
-                <!--android:layout_gravity="center"/>-->
+            <ImageView
+                android:id="@+id/carsimg1"
+                android:src="@drawable/homework2"
+                android:layout_width="64dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"/>
 
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textAlignment="center"-->
-                <!--android:textColor="@color/primaryLightColor"-->
-                <!--android:textSize="15sp"-->
-                <!--android:textStyle="bold"-->
-                <!--android:text="Class B"-->
-                <!--android:layout_gravity="center"/>-->
-
-
-        <!--</LinearLayout>-->
-
-    <!--</android.support.v7.widget.CardView>-->
-
-    <!--<android.support.v7.widget.CardView-->
-        <!--xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_width="120dp"-->
-        <!--android:layout_height="100dp"-->
-        <!--card_view:cardBackgroundColor="@color/primaryDarkColor"-->
-        <!--card_view:cardCornerRadius="10dp"-->
-        <!--android:layout_marginLeft="30dp"-->
-        <!--android:layout_marginTop="15dp">-->
-        <!--<LinearLayout-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_horizontal|center_vertical"-->
-            <!--android:layout_margin="1dp"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/carsimg"-->
-                <!--android:src="@drawable/classroom"-->
-                <!--android:layout_width="64dp"-->
-                <!--android:layout_height="48dp"-->
-                <!--android:layout_gravity="center"/>-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/cardtxt"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textAlignment="center"-->
-                <!--android:textColor="@color/primaryLightColor"-->
-                <!--android:textSize="15sp"-->
-                <!--android:textStyle="bold"-->
-                <!--android:text="Class C"-->
-                <!--android:layout_gravity="center"/>-->
+            <TextView
+                android:id="@+id/cardtxt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/primaryLightColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="Class B"
+                android:layout_gravity="center"/>
 
 
-        <!--</LinearLayout>-->
+        </LinearLayout>
 
-    <!--</android.support.v7.widget.CardView>-->
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        card_view:cardBackgroundColor="@color/grey_5"
+        card_view:cardCornerRadius="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="1dp"
+            android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/carsimg2"
+                android:src="@drawable/studying1"
+                android:layout_width="64dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/cardtxt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/primaryLightColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="Class C"
+                android:layout_gravity="center"/>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        card_view:cardBackgroundColor="@color/grey_5"
+        card_view:cardCornerRadius="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="1dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/carsimg3"
+                android:src="@drawable/studying1"
+                android:layout_width="64dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/cardtxt3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/primaryLightColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="Class A"
+                android:layout_gravity="center"/>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_gravity="center"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        card_view:cardBackgroundColor="@color/grey_5"
+        card_view:cardCornerRadius="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="1dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/carsimg4"
+                android:src="@drawable/homework"
+                android:layout_width="64dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/cardtxt4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/primaryLightColor"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="Class C"
+                android:layout_gravity="center"/>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>

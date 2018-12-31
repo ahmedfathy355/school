@@ -13,17 +13,16 @@
     android:layout_height="match_parent"
     android:columnCount="3"
     android:rowCount="2"
-    android:alignmentMode="alignMargins"
-    android:columnOrderPreserved="false"
-    android:padding="14dp"
-    android:layout_weight="5"
-android:background="@color/primaryDarkColor"
+    android:alignmentMode="alignBounds"
+    android:columnOrderPreserved="true"
+    android:padding="20dp"
+    android:layout_weight="6"
     >
 
         <!--Row 1 Col 1-->
         <android.support.v7.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:layout_marginLeft="3dp"
@@ -61,8 +60,8 @@ android:background="@color/primaryDarkColor"
 
         <!--Row 1 Col 2-->
         <android.support.v7.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:layout_marginLeft="3dp"
@@ -101,11 +100,52 @@ android:background="@color/primaryDarkColor"
 
         <!--Row 1 Col 3-->
         <android.support.v7.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_columnWeight="1"
             android:layout_marginLeft="3dp"
             android:layout_rowWeight="1"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="@color/grey_3">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="1dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:src="@drawable/absence"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:text="Absence"
+                    android:layout_gravity="center"/>
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <!--Row 2 Col 1-->
+        <android.support.v7.widget.CardView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="3dp"
             app:cardCornerRadius="10dp"
             app:cardBackgroundColor="@color/grey_3">
 
@@ -139,49 +179,10 @@ android:background="@color/primaryDarkColor"
         </android.support.v7.widget.CardView>
 
 
-        <!--Row 2 Col 1-->
-        <android.support.v7.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="3dp"
-            app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="@color/grey_3">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="1dp"
-                android:orientation="vertical">
-
-                <ImageView
-
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_gravity="center"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"/>
-
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-
         <!--Row 2 Col 2-->
         <android.support.v7.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_columnWeight="1"
             android:layout_marginTop="4dp"
             android:layout_marginLeft="3dp"
@@ -218,8 +219,8 @@ android:background="@color/primaryDarkColor"
 
         <!--Row 2 Col 3-->
         <android.support.v7.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_columnWeight="1"
             android:layout_marginTop="4dp"
             android:layout_marginLeft="3dp"
@@ -263,53 +264,49 @@ android:background="@color/primaryDarkColor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="5"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="invisible">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="10dp"
-            android:layout_weight="1">
+            android:layout_weight="0"
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:src="@drawable/studying"/>
+                android:src="@drawable/studying" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/grey_80"
-                android:text="Events"
-                android:textSize="25sp"
-                android:fontFamily="@font/latobold"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:layout_marginLeft="5dp"/>
+                android:fontFamily="@font/latobold"
+                android:text="Events"
+                android:textColor="@color/grey_80"
+                android:textSize="25sp" />
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="View All"
                 android:background="@color/grey_80"
-                android:textColor="@color/cardview_light_background"
-                />
+                android:text="View All"
+                android:textColor="@color/cardview_light_background" />
 
         </LinearLayout>
 
+        <include layout="@layout/events_card" />
 
-
-        <android.support.v7.widget.RecyclerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/recycler_view3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:layout_weight="11">
-
-
-
-
-        </android.support.v7.widget.RecyclerView>
-
+        <!--<android.support.v7.widget.RecyclerView-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:id="@+id/recycler_view3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:scrollbars="vertical">-->
+        <!--</android.support.v7.widget.RecyclerView>-->
 
 
     </LinearLayout>

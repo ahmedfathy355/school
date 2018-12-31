@@ -2,7 +2,7 @@
 <android.support.v7.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/toolbar"
+    android:id="@+id/toolbar_main"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="?attr/colorPrimary"
@@ -12,7 +12,7 @@
 
 
     <ImageView
-        android:src="@drawable/babyface"
+        android:src="@drawable/ic_menu"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         />
@@ -20,9 +20,9 @@
     <TextView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/primaryLightColor"
+        android:textColor="#FFF"
         android:textStyle="bold"
-        android:text="Name :   ......  ......"
+        android:text="Home"
         android:layout_marginLeft="30dp"
         />
 
