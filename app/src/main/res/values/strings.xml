@@ -17,4 +17,5 @@
     <string name="autofocus_off">autofocus off</string>
     <string name="tapAgain">tab again to exit</string>
     <string name="copied">Copied</string>
+    <string name="Scan_Code">Scan Code</string>
 </resources>

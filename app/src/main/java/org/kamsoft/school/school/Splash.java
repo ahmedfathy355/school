@@ -3,6 +3,7 @@ package org.kamsoft.school.school;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,8 +22,10 @@ public class Splash extends AppCompatActivity {
 
         imgsplash = (ImageView) findViewById(R.id.imagesplash);
         schoolname = (TextView) findViewById(R.id.schoolname);
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/hacen.ttf");
+        //Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/hacen.ttf");
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.changa_medium);
         schoolname.setTypeface(typeface);
+        schoolname.setText("Mama Nora");
 
         final Intent iii = new Intent(Splash.this, HomeActivity.class);
         Thread timer = new Thread(){

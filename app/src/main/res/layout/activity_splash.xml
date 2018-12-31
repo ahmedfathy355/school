@@ -23,9 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
-        android:textSize="40dp"
-        android:text="ماما نورا"
-        android:textColor="@color/primaryLightColor"/>
+        android:textColor="@color/primaryLightColor"
+        android:textSize="40dp" />
 
 </LinearLayout>
 

@@ -1,18 +1,22 @@
 package org.kamsoft.school.school.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.hardware.Camera;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.Html;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
@@ -24,12 +28,15 @@ import net.sourceforge.jtds.jdbc.DateTime;
 import org.kamsoft.school.school.Database.DB;
 import org.kamsoft.school.school.HomeActivity;
 import org.kamsoft.school.school.R;
+import org.kamsoft.school.school.adapter.Classess;
 import org.kamsoft.school.school.data.preference.AppPreference;
 import org.kamsoft.school.school.data.preference.PrefKey;
 import org.kamsoft.school.school.utils.ActivityUtils;
 import org.kamsoft.school.school.utils.AppUtils;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,13 +59,16 @@ public class ScanFragment extends Fragment {
     private boolean isFlash, isAutoFocus;
     private int camId, frontCamId, rearCamId;
 
-
+    TextView scaned_name;
+    PreparedStatement stmt ;
+    ResultSet rs;
     Connection connect;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initVar();
+
         zXingScannerView = new ZXingScannerView(mActivity);
         setupFormats();
     }
@@ -67,7 +77,7 @@ public class ScanFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_scan, container, false);
 
-
+        scaned_name = (TextView) rootView.findViewById(R.id.txt_ScanedName);
         initView(rootView);
         initListener();
 
@@ -136,13 +146,14 @@ public class ScanFragment extends Fragment {
 
 
                 Save_Absence();
-                ActivityUtils.getInstance().invokeActivity(mActivity, HomeActivity.class, true);
+                //ActivityUtils.getInstance().invokeActivity(mActivity, HomeActivity.class, true);
 
             }
         });
 
     }
 
+    @SuppressLint("ResourceAsColor")
     private void Save_Absence() {
 
 
@@ -171,10 +182,30 @@ public class ScanFragment extends Fragment {
             statement.executeUpdate(query);
 
 
-            Toast.makeText(mContext, "Done!", Toast.LENGTH_SHORT).show();
+
+            String query2 = "SELECT     BabyName FROM         BabyInfo  WHERE     (BabyNum = '"+BabyNum+"'  ) ";
+            stmt = connect.prepareStatement(query2);
+            rs = stmt.executeQuery();
+            List<String> datanum = null;
+           while (rs.next()) {
+               datanum.add(rs.getString("BabyName"));
+            }
+            scaned_name.setText(datanum.get(0).toString() + "Scaned Successfully");
+
+//            Typeface typeface = ResourcesCompat.getFont(mContext, R.font.aldrich);
+//            scaned_name.setTypeface(typeface);
+
+            Typeface typeface = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                typeface = getResources().getFont(R.font.changa_medium);
+            }
+            scaned_name.setTypeface(typeface);
+
+            //Toast.makeText(mContext, "Done!", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             //alert.showAlertDialog(SendTicket.this, "Server Error ..", e.getMessage(), false);
+            scaned_name.setText("Scan Error");
             e.printStackTrace();
         }
     }
