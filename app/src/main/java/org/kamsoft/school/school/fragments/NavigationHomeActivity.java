@@ -78,7 +78,7 @@ public class NavigationHomeActivity  extends Fragment  {
         myrv.setAdapter(myAdapter);
 
 
-        cAdapter = new ClassessAdapter( rootView.getContext(),classList);
+        //cAdapter = new ClassessAdapter( rootView.getContext(),classList);
 
 //        Classess a = new Classess(1,false,R.drawable.classroom,"SSSS");
 //        classList.add(a);

@@ -3,6 +3,7 @@ package org.kamsoft.school.school.fragments;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.hardware.Camera;
 import android.os.Build;
@@ -12,12 +13,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
 import android.text.Html;
-import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
@@ -26,9 +26,9 @@ import com.google.zxing.Result;
 import net.sourceforge.jtds.jdbc.DateTime;
 
 import org.kamsoft.school.school.Database.DB;
-import org.kamsoft.school.school.HomeActivity;
+
 import org.kamsoft.school.school.R;
-import org.kamsoft.school.school.adapter.Classess;
+import org.kamsoft.school.school.ScanPagerActivity;
 import org.kamsoft.school.school.data.preference.AppPreference;
 import org.kamsoft.school.school.data.preference.PrefKey;
 import org.kamsoft.school.school.utils.ActivityUtils;
@@ -60,6 +60,7 @@ public class ScanFragment extends Fragment {
     private int camId, frontCamId, rearCamId;
 
     TextView scaned_name;
+    Button btn_next;
     PreparedStatement stmt ;
     ResultSet rs;
     Connection connect;
@@ -69,15 +70,17 @@ public class ScanFragment extends Fragment {
         super.onCreate(savedInstanceState);
         initVar();
 
-        zXingScannerView = new ZXingScannerView(mActivity);
+
         setupFormats();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_scan, container, false);
-
+        zXingScannerView = new ZXingScannerView(mActivity);
         scaned_name = (TextView) rootView.findViewById(R.id.txt_ScanedName);
+        btn_next = (Button) rootView.findViewById(R.id.btn_Next);
+
         initView(rootView);
         initListener();
 
@@ -135,26 +138,56 @@ public class ScanFragment extends Fragment {
 
         zXingScannerView.setResultHandler(new ZXingScannerView.ResultHandler() {
             @Override
-            public void handleResult(Result result) {
+            public void handleResult(final Result result) {
 
                 String resultStr = result.getText();
                 ArrayList<String> previousResult = AppPreference.getInstance(mContext).getStringArray(PrefKey.RESULT_LIST);
                 previousResult.add(resultStr);
                 AppPreference.getInstance(mContext).setStringArray(PrefKey.RESULT_LIST, previousResult);
 
-                zXingScannerView.resumeCameraPreview(this);
 
+                if (Save_Absence(resultStr))
+                {
+//                    Thread timer = new Thread(){
+//                        public void run()  {
+//                            try {
+//                                sleep(3000);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                            finally {
+//
+//                                zXingScannerView.stopCameraPreview();
+//                            }
+//                        }
+//                    };
+//                    timer.start();
+                    zXingScannerView.stopCameraPreview();
+                }
+                else
+                    {
+                        scaned_name.setText("Scan Error");
+                        zXingScannerView.resumeCameraPreview(this);
+                    }
 
-                Save_Absence();
                 //ActivityUtils.getInstance().invokeActivity(mActivity, HomeActivity.class, true);
 
             }
         });
 
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(mContext,ScanPagerActivity.class);
+                mContext.startActivity(intent);
+                mActivity.finish();
+            }
+        });
     }
 
     @SuppressLint("ResourceAsColor")
-    private void Save_Absence() {
+    private boolean Save_Absence(String _resultStr ) {
 
 
         String BabyNum = "";
@@ -165,48 +198,60 @@ public class ScanFragment extends Fragment {
         }
         catch (Exception e)
         {}
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            BabyNum = Html.fromHtml(lastResult, Html.FROM_HTML_MODE_LEGACY).toString();
-        } else {
-            BabyNum = Html.fromHtml(lastResult).toString();
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            BabyNum = Html.fromHtml(lastResult, Html.FROM_HTML_MODE_LEGACY).toString();
+//        } else {
+//            BabyNum = Html.fromHtml(lastResult).toString();
+//        }
 
         try {
 
 
 
-            connect = DB.CONN("oryx", "oryx", "Nursery", "192.168.1.100");
-            String dates = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Calendar.getInstance().getTime());
-            String query = "INSERT INTO Absent  ( BabyNum, AbsentDate, UserID) VALUES   ('" + BabyNum + "','"+ dates +"','" + 1 + "')      ";
-            Statement statement = connect.createStatement();
-            statement.executeUpdate(query);
+            connect = DB.CONN("oryx", "oryx", "Nursery", "192.168.1.2");
 
-
-
-            String query2 = "SELECT     BabyName FROM         BabyInfo  WHERE     (BabyNum = '"+BabyNum+"'  ) ";
+            String query2 = "SELECT     BabyName FROM         BabyInfo  WHERE     (BabyNum = '"+_resultStr+"'  ) ";
             stmt = connect.prepareStatement(query2);
             rs = stmt.executeQuery();
-            List<String> datanum = null;
-           while (rs.next()) {
-               datanum.add(rs.getString("BabyName"));
+            List<String> datanum = new ArrayList<>();
+            while (rs.next()) {
+
+                datanum.add(rs.getString("BabyName"));
             }
-            scaned_name.setText(datanum.get(0).toString() + "Scaned Successfully");
+
+
+            if(datanum.size() > 0)
+            {
+                scaned_name.setText(datanum.get(0).toString());
+                String dates = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Calendar.getInstance().getTime());
+                String query = "INSERT INTO Absent  ( BabyNum, AbsentDate, UserID) VALUES   ('" + _resultStr + "','"+ dates +"','" + 1 + "')      ";
+                Statement statement = connect.createStatement();
+                statement.executeUpdate(query);
+
+                return  true;
+            }
+            else
+            {
+                scaned_name.setText("Invalid Chiled Code");
+                return  false;
+            }
 
 //            Typeface typeface = ResourcesCompat.getFont(mContext, R.font.aldrich);
 //            scaned_name.setTypeface(typeface);
 
-            Typeface typeface = null;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                typeface = getResources().getFont(R.font.changa_medium);
-            }
-            scaned_name.setTypeface(typeface);
+//            Typeface typeface = null;
+//            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+//                typeface = getResources().getFont(R.font.changa_medium);
+//            }
+//            scaned_name.setTypeface(typeface);
 
             //Toast.makeText(mContext, "Done!", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             //alert.showAlertDialog(SendTicket.this, "Server Error ..", e.getMessage(), false);
-            scaned_name.setText("Scan Error");
+            scaned_name.setText("Scan Error  " + e.getMessage());
             e.printStackTrace();
+            return  false;
         }
     }
 

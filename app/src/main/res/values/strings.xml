@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">school</string>
+    <string name="app_name">Mama Nora</string>
     <string name="Homwork">Homework</string>
     <string name="Classes">Classes</string>
     <string name="title_activity_main2">Main2Activity</string>
@@ -18,4 +18,5 @@
     <string name="tapAgain">tab again to exit</string>
     <string name="copied">Copied</string>
     <string name="Scan_Code">Scan Code</string>
+    <string name="homework">HomeWork</string>
 </resources>
